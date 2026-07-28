@@ -21,18 +21,29 @@ public class GeradorNomeBuilder {
     }
 
     public GeradorNomeBuilder excelentissimo() { 
-        gn.setTratamento(new Excelentissimo());
-
+        inserirNovoTratamento(new Excelentissimo());
         return this;
+    }
+    private void inserirNovoTratamento(Tratamento t) {
+        if(gn.getTratamentoStrategy() instanceof NullTratamento)
+            gn.setTratamento(t);
+
+        else
+            gn.setTratamento(new TratamentoComposite(
+                gn.getTratamentoStrategy(), t));
     }
 
     public GeradorNomeBuilder magnifico() { 
-        gn.setTratamento(new Magnifico());
-
+        inserirNovoTratamento(new Magnifico());
         return this;
     }
 
     public GeradorNome gerar() { 
         return this.gn;
+    }
+
+    public GeradorNomeBuilder de(String local) { 
+        gn = new GeradorNomeProxyLocal(gn, local);
+        return this;
     }
 }
