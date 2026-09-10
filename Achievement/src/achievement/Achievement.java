@@ -1,14 +1,9 @@
 package achievement;
 
-public class Achievement {
+abstract class Achievement {
     
-    private String name;
+    public String name;
 
-    public Achievement(String name) {
-        this.name = name;
-    }
+    public abstract String getName();
 
-    public String getName() {
-        return name;
-    }
 }
