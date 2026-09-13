@@ -1,23 +1,23 @@
 package achievement;
 
 public class Points extends Achievement {
-    private int q;
+    private int points;
 
     public Points(String name, int quantity) {
         this.name = name;
-        this.q = quantity;
+        this.points = quantity;
     }
 
     public String getName() {
-        return name;
+        return "Points " + name;
     }
 
     public int getQ() {
-        return q;
+        return points;
     }
 
     public void setQ(int q) {
-        this.q = q;
+        this.points = q;
     }
     
     
