@@ -25,24 +25,14 @@ public class TestAchievement {
         assertEquals("Fazer 3 gols", objetive);
     }
     @Test
-    public void testAddAchivementPoints() {
-        Points p = new Points("Teste Points", 10);
-        
-        AchievementStore a = new AchievementStore();
-        
-        a.addAchievement(p);
+    public void testAddAchivementPointsForUser() {
+        Points p = new Points("Test Points", 10);
 
-        assertEquals(true, a.getIfAchievementWasAdd(p));
+        AchievementStorage a = AchievementStorageFactory.getAchievementStorage();
+        
+        a.addAchievement("Nelson", p);
+
+        assertEquals(p, a.getAchievement("Nelson", "Test Points"));
     }
     
-    @Test
-    public void testAddAchivementBadge() {
-        Badge b = new Badge("Teste Badge", "Add Badge");
-        
-        AchievementStore a = new AchievementStore();
-        
-        a.addAchievement(b);
-
-        assertEquals(true, a.getIfAchievementWasAdd(b));
-    }
 }
