@@ -18,18 +18,27 @@ public class MemoryAchievementStorage implements AchievementStorage {
     public static MemoryAchievementStorage getInstance() {
         if(singleton == null) {
             singleton = new MemoryAchievementStorage();
-        }
-        
+        } 
         return singleton;
     }
 
     @Override
     public void addAchievement(String user, Achievement a) {
+        achievements.add(a);
+        storage.put(user, achievements);
     }
 
     @Override
     public Achievement getAchievement(String user, String achievementName) {
+        if(storage.containsKey(user)) {
+            List<Achievement> list = storage.get(user);
 
+            for(Achievement item : list) {
+                if(item.getName() == achievementName) {
+                    return item;
+                }
+            }
+        }
         return null;
     }
 

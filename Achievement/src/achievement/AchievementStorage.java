@@ -15,5 +15,4 @@ public interface AchievementStorage {
 
     abstract void setAchievementStorage(AchievementStorage a);
 
-
 }

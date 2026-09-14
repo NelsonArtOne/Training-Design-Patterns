@@ -9,7 +9,7 @@ public class Points extends Achievement {
     }
 
     public String getName() {
-        return "Points " + name;
+        return name;
     }
 
     public int getQ() {

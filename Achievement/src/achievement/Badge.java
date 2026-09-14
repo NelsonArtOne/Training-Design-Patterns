@@ -10,7 +10,7 @@ public class Badge extends Achievement {
     }
     
     public String getName() {
-        return "Badge " + name;
+        return name;
     }
 
     public String getObjective() { 
