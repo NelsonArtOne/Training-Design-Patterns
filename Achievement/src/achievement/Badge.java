@@ -5,7 +5,7 @@ public class Badge extends Achievement {
 
 
     public Badge(String name, String objective) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.objective = objective;
     }
     

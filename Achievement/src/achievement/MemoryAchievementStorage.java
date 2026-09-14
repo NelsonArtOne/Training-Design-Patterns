@@ -24,8 +24,14 @@ public class MemoryAchievementStorage implements AchievementStorage {
 
     @Override
     public void addAchievement(String user, Achievement a) {
-        achievements.add(a);
-        storage.put(user, achievements);
+        if(user != null && a != null) {
+            if(storage.containsKey(user)) {
+                achievements.add(a); 
+            }
+                achievements.clear();
+                achievements.add(a);
+                storage.put(user, achievements);
+        }  
     }
 
     @Override
@@ -43,9 +49,13 @@ public class MemoryAchievementStorage implements AchievementStorage {
     }
 
     @Override
-    public Achievement getAchievements(String user) {
-
+    public List<Achievement> getAchievements(String user) {
+        if(storage.containsKey(user)) {
+            List<Achievement> list = storage.get(user);
+            return list;
+        }
         return null;
+
     }
 
     @Override

@@ -4,7 +4,7 @@ public class Points extends Achievement {
     private int points;
 
     public Points(String name, int quantity) {
-        this.name = name;
+        this.name = name.toLowerCase();
         this.points = quantity;
     }
 

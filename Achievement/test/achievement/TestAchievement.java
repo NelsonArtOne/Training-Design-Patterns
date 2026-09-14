@@ -2,6 +2,9 @@ package achievement;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 
@@ -9,22 +12,22 @@ public class TestAchievement {
 
     @Test
     public void testCreateAchievementPoints () {
-        Points p = new Points("First Test", 10);
-        String name = p.getName();
-        int q = p.getQ();
+        Points point = new Points("First Test", 10);
+        String name = point.getName();
+        int quantity = point.getQ();
 
-        assertEquals("First Test", name);
-        assertEquals(10, q);
+        assertEquals("first test", name);
+        assertEquals(10, quantity);
     }
 
     @Test
     public void testCreateAchievementBadge() {
-        Badge b = new Badge("Badge TDD Works", "Make Test Passed");
-        String name = b.getName();
-        String objetive = b.getObjective();
+        Badge badge = new Badge("badge tdd works", "make test pass");
+        String name = badge.getName();
+        String objetive = badge.getObjective();
 
-        assertEquals("Badge TDD Works", name);
-        assertEquals("Make Test Passed", objetive);
+        assertEquals("badge tdd works", name);
+        assertEquals("make test pass", objetive);
     }
 
     @Test
@@ -37,25 +40,50 @@ public class TestAchievement {
     }
 
     @Test
-    public void testAddAchivementPointsForUser() {
-        Points p = new Points("Points Test", 10);
+    public void testAddAchievementPointsForUser() {
+        Points point = new Points("point test", 10);
 
-        AchievementStorage a = AchievementStorageFactory.getAchievementStorage();
+        AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
         
-        a.addAchievement("Nelson", p);
+        achievementStorage.addAchievement("Nelson", point);
 
-        assertEquals(p, a.getAchievement("Nelson", "Points Test"));
+        assertEquals(point, achievementStorage.getAchievement("Nelson", "point test"));
     }
 
     @Test
-    public void testAddAchivementBagdeForUser() {
-        Badge b = new Badge("Badge Test", "Test Passed");
-        
-        AchievementStorage a = AchievementStorageFactory.getAchievementStorage();
-        
-        a.addAchievement("Nelson", b);
+    public void testAddAchievementBagdeForUser() {
+        Badge badge = new Badge("badge test", "test passed");
 
-        assertEquals(b, a.getAchievement("Nelson", "Badge Test"));
+        AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
+        
+        achievementStorage.addAchievement("Nelson", badge);
+
+        assertEquals(badge, achievementStorage.getAchievement("Nelson", "badge test"));
+    }
+    @Test
+    public void testListAchievementsIsEmpty() {
+        AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
+        
+        List<Achievement> achievements = achievementStorage.getAchievements("Nelson");
+       
+        assertEquals(0, achievements.size());
+    }
+
+    @Test
+    public void testGetAchievements() {
+        Points point = new Points("Point Test", 10);
+        Badge badge = new Badge("Badge Test", "Test Passed");
+
+        AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
+        
+        achievementStorage.addAchievement("Nelson", point);
+        achievementStorage.addAchievement("Nelson", badge);
+
+        List<Achievement> achievements = achievementStorage.getAchievements("Nelson");
+
+        assertEquals(2, achievements.size());
+        assertEquals(true, achievements.contains(point));
+        assertEquals(true, achievements.contains(badge));
     }
     
 }
