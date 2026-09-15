@@ -22,12 +22,10 @@ public class TestAchievement {
 
     @Test
     public void testCreateAchievementBadge() {
-        Badge badge = new Badge("Badge TDD Works", "Make Test Pass");
+        Badge badge = new Badge("Badge TDD Works");
         String name = badge.getName();
-        String objetive = badge.getObjective();
 
         assertEquals("Badge TDD Works", name);
-        assertEquals("Make Test Pass", objetive);
     }
 
     @Test
@@ -52,7 +50,7 @@ public class TestAchievement {
 
     @Test
     public void testAddAchievementBagdeForUser() {
-        Badge badge = new Badge("Badge Test", "Test Pass");
+        Badge badge = new Badge("Badge Test");
 
         AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
         
@@ -74,7 +72,7 @@ public class TestAchievement {
     @Test
     public void testGetAchievements() {
         Points point = new Points("Point Test", 10);
-        Badge badge = new Badge("Badge Test", "Test Passed");
+        Badge badge = new Badge("Badge Test");
 
         AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
         
@@ -127,4 +125,24 @@ public class TestAchievement {
         assertEquals(35, a.getTotalPoints());
     }
     
+    @Test
+    public void testAddTopic() {
+        ForumService f = new ForumServiceGamificationProxy();
+
+        AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
+        
+        achievementStorage.clearUserAchievemets("Nelson");
+
+        f.addTopic("Nelson", "Hello World");
+
+        Achievement point = achievementStorage.getAchievement("Nelson", "CREATION"); 
+        Achievement badge = achievementStorage.getAchievement("Nelson", "I CAN TALK");
+        
+        assertEquals("CREATION", point.getName());
+        assertEquals("I CAN TALK", badge.getName());
+    }
+
+    @Test void testAddComment() { 
+
+    }
 }
