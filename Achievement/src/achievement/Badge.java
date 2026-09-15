@@ -20,5 +20,9 @@ public class Badge extends Achievement {
     public void setObjective(String objective) {
         this.objective = objective;
     } 
+
+    public int getTotalPoints() {
+        return 0;
+    }
     
 }

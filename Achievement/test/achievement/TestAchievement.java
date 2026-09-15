@@ -14,7 +14,7 @@ public class TestAchievement {
     public void testCreateAchievementPoints () {
         Points point = new Points("First Test", 10);
         String name = point.getName();
-        int quantity = point.getQ();
+        int quantity = point.getPointsQuantity();
 
         assertEquals("First Test", name);
         assertEquals(10, quantity);
@@ -97,7 +97,7 @@ public class TestAchievement {
         AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
 
         achievementStorage.clearUserAchievemets("Nelson");
-        
+
         achievementStorage.addAchievement("Nelson", point);
         achievementStorage.addAchievement("Nelson", point);
 
@@ -105,6 +105,26 @@ public class TestAchievement {
 
         assertEquals(1, achievements.size());
         assertEquals(point, achievementStorage.getAchievement("Nelson", "Point Test"));
+    }
+
+    @Test
+    public void testSumAchivementsPoints() {
+        Points pointOne = new Points("Point Test 1.0", 10);
+        Points pointTwo = new Points("Point Test 2.0", 5);
+        Points pointTree = new Points("Point Test 3.0", 20);
+
+
+        AchievementStorage achievementStorage = AchievementStorageFactory.getAchievementStorage();
+
+        achievementStorage.clearUserAchievemets("Nelson");
+
+        achievementStorage.addAchievement("Nelson", pointOne);
+        achievementStorage.addAchievement("Nelson", pointTwo);
+        achievementStorage.addAchievement("Nelson", pointTree);
+
+        Achievement a = achievementStorage.getAchievement("Nelson", "Point Test 3.0");
+
+        assertEquals(35, a.getTotalPoints());
     }
     
 }

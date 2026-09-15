@@ -6,4 +6,6 @@ abstract class Achievement {
 
     public abstract String getName();
 
+    public abstract int getTotalPoints();
+
 }

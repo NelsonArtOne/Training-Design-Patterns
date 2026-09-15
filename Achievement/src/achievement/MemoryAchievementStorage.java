@@ -40,6 +40,24 @@ public class MemoryAchievementStorage implements AchievementStorage {
         if(achievements.contains(a)) {
             return;
         }
+
+        if(a instanceof Points) {
+
+            int totalPoints = 0;
+
+            for(Achievement item : achievements) {
+                if(item instanceof Points) {
+                    totalPoints += ((Points)item).getPointsQuantity();
+                }
+            }
+            totalPoints += ((Points)a).getPointsQuantity();
+
+            ((Points)a).setTotalPoints(totalPoints);
+            
+            achievements.add(a);
+
+            return;
+        }
         achievements.add(a);
     } 
 

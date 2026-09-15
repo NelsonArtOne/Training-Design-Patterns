@@ -11,6 +11,7 @@ public interface AchievementStorage {
     abstract List<Achievement> getAchievements(String user);
 
     abstract void setAchievementStorage(AchievementStorage a);
+    
     abstract void clearUserAchievemets(String user);
 
 }

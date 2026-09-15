@@ -2,6 +2,7 @@ package achievement;
 
 public class Points extends Achievement {
     private int points;
+    private int totalPoints;
 
     public Points(String name, int quantity) {
         this.name = name;
@@ -12,12 +13,16 @@ public class Points extends Achievement {
         return name;
     }
 
-    public int getQ() {
+    public int getPointsQuantity() {
         return points;
     }
 
-    public void setQ(int q) {
-        this.points = q;
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
     }
     
     
