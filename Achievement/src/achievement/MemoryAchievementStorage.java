@@ -1,5 +1,6 @@
 package achievement;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,15 +25,23 @@ public class MemoryAchievementStorage implements AchievementStorage {
 
     @Override
     public void addAchievement(String user, Achievement a) {
-        if(user != null && a != null) {
-            if(storage.containsKey(user)) {
-                achievements.add(a); 
-            }
-                achievements.clear();
-                achievements.add(a);
-                storage.put(user, achievements);
-        }  
-    }
+        if(user == null || a == null) {
+            return;
+        }
+
+        List<Achievement> achievements = storage.get(user);
+
+        if(achievements == null) {
+            achievements = new ArrayList<>();
+            achievements.add(a);
+            storage.put(user, achievements);
+        }   
+
+        if(achievements.contains(a)) {
+            return;
+        }
+        achievements.add(a);
+    } 
 
     @Override
     public Achievement getAchievement(String user, String achievementName) {
@@ -63,7 +72,9 @@ public class MemoryAchievementStorage implements AchievementStorage {
         getInstance(); 
     }
 
-    
-
+    public void clearUserAchievemets(String user) {
+        List<Achievement> achievements = storage.get(user);
+        achievements.clear();
+    }
 }
     
